@@ -1,0 +1,195 @@
+
+.find-page {
+  color: #e9eaf2;
+}
+
+.find-heading {
+  margin-bottom: 24px;
+}
+
+.find-heading h2 {
+  font: 800 27px Manrope, sans-serif;
+  margin: 0 0 9px;
+}
+
+.find-heading > p:last-child {
+  color: #9296aa;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.find-card,
+.find-info {
+  background: #11141e;
+  border: 1px solid #262938;
+  border-radius: 14px;
+  padding: 25px;
+}
+
+.find-form {
+  display: grid;
+  grid-template-columns: 1fr 35px 1fr;
+  align-items: end;
+  gap: 16px;
+}
+
+.find-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #a9adc0;
+  font-size: 12px;
+}
+
+.find-form select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #34364b;
+  background: #0c0e16;
+  color: #f0eff8;
+  border-radius: 9px;
+  outline: none;
+}
+
+.find-form select:focus {
+  border-color: #9a85ff;
+}
+
+.route-symbol {
+  text-align: center;
+  color: #a18aff;
+  font-size: 22px;
+  padding-bottom: 10px;
+}
+
+.find-button {
+  margin-top: 23px;
+  padding: 13px 20px;
+  border: 0;
+  border-radius: 9px;
+  background: #9279f5;
+  color: white;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.find-button:hover {
+  background: #a18aff;
+}
+
+.path-result {
+  margin-top: 27px;
+  border-top: 1px solid #292c3c;
+  padding-top: 24px;
+}
+
+.result-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.result-top h3 {
+  font: 800 27px Manrope, sans-serif;
+  margin: 0;
+}
+
+.result-badge {
+  background: #1b332d;
+  color: #8ce0b9;
+  padding: 7px 11px;
+  border-radius: 20px;
+  font-size: 10px;
+}
+
+.path-visual {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 25px 0;
+}
+
+.path-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.path-node {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid #42375f;
+  background: #211d32;
+  padding: 9px 12px;
+  border-radius: 10px;
+}
+
+.path-node span {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: #44356d;
+  color: #d7cbff;
+  font-weight: 700;
+}
+
+.path-node strong {
+  font-size: 12px;
+}
+
+.path-arrow {
+  color: #a18aff;
+  font-size: 18px;
+}
+
+.path-explanation,
+.no-path p {
+  font-size: 12px;
+  color: #a5a8bc;
+  line-height: 1.7;
+}
+
+.no-path h3 {
+  margin-bottom: 8px;
+}
+
+.find-info {
+  margin-top: 18px;
+}
+
+.find-info strong {
+  font-size: 13px;
+}
+
+.find-info p {
+  color: #a5a8bc;
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 10px 0;
+}
+
+.find-info span {
+  color: #b8a5ff;
+  font-size: 11px;
+}
+
+@media (max-width: 600px) {
+  .find-card,
+  .find-info {
+    padding: 17px;
+  }
+
+  .find-form {
+    grid-template-columns: 1fr;
+  }
+
+  .route-symbol {
+    padding: 0;
+  }
+}
+
