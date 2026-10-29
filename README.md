@@ -1,130 +1,225 @@
-# 🌐 LinkedIn Analyzer - Graph Engine
+# 🎓 Student Network Graph Analyzer
 
-*Read this in other languages: [English](README.en.md)*
+A graph-based application for analyzing student connections, exploring network structures, finding paths between students, and generating connection recommendations using fundamental Data Structures and Algorithms.
 
-Um motor de análises e recomendações para redes profissionais, utilizando a Teoria dos Grafos para resolver problemas de conexão, otimização e proximidade.
-
-Este projeto prático foi desenvolvido para a disciplina de **Teoria dos Grafos**, ministrada pelo professor **Douglas Meneses**, no curso de Ciência da Computação do **Unipê**. A fundação estrutural do grafo e a base de alguns algoritmos foram herdadas do material didático oficial da disciplina, sendo posteriormente refatoradas, otimizadas e expandidas pela equipe para construir o motor de análise atual.
+Built with **Java, Gradle, React, and TypeScript**, the project demonstrates how graph theory can be applied to student social networks through an interactive frontend and a Java-based backend.
 
 ---
 
-## 🎥 Apresentação do Projeto
+## 🚀 Features
 
-> 📺 **Clique aqui para assistir ao vídeo explicativo no YouTube**  
-> *[(Projeto LinkedIn Analyzer: Motor de Recomendação com Grafos | Unipê)](https://youtu.be/ILRbmSqzFgk)*
+### 🔍 Graph Traversal — BFS and DFS
 
----
+- **Breadth-First Search (BFS):** Explores the network level by level and helps identify the shortest path in terms of number of connections in an unweighted graph.
+- **Depth-First Search (DFS):** Explores connected vertices by following paths as deeply as possible before backtracking.
+- Displays traversal results to help users understand how the network is explored.
 
-## 🚀 Funcionalidades e Algoritmos
+### 🌐 Connected Components
 
-O motor de análise, encapsulado na classe `LinkedInAnalyzer`, resolve diferentes problemas de redes sociais profissionais utilizando algoritmos clássicos da Teoria dos Grafos.
+Identifies disconnected groups of students within the network, helping reveal separate communities and isolated portions of the graph.
 
-### Mapeamento de Sub-redes (DFS — *Depth-First Search*)
-Realiza uma varredura completa da rede para identificar grupos de usuários conectados entre si, mas isolados dos demais componentes da rede.
+### 🛣️ Shortest-Path Analysis
 
-### Grau de Separação (BFS — *Breadth-First Search*)
-Calcula a menor distância entre dois perfis considerando apenas o número de conexões (saltos), desconsiderando os pesos das arestas.
+Uses BFS to calculate paths based on the number of connections and Dijkstra's algorithm to find minimum-cost routes in a weighted network.
 
-### Rota de Maior Afinidade (Algoritmo de Dijkstra)
-Determina o caminho de menor custo entre dois usuários, priorizando conexões com maior afinidade (menor peso), garantindo a rota ótima entre origem e destino.
+### 🤝 Connection Recommendations
 
-### Motor de Sugestões de Conexão
-Identifica conexões de segundo grau ("amigos de amigos"), sugerindo novos contatos ordenados pela quantidade de amigos em comum.
+Suggests potential student connections based on the relationships represented in the network.
 
----
+### 🖥️ Interactive Frontend
 
-## 🏗️ Arquitetura do Projeto
-
-O projeto foi desenvolvido utilizando princípios de **Programação Orientada a Objetos**, **Clean Code** e boas práticas de organização de software.
-
-### Componentes principais
-- `GraphAlgorithm` — Interface comum para todos os algoritmos de grafos implementados.
-- `DFS` — Busca em profundidade.
-- `BFS` — Busca em largura.
-- `Dijkstra` — Algoritmo de menor caminho ponderado.
-- `LinkedInAnalyzer` — Motor responsável pelas análises da rede.
-- `ConnectionSuggestion` — Classe focada exclusivamente na lógica de recomendação de contatos.
-- `PathResult` e `SuggestionResult` — Records e modelos imutáveis utilizados para encapsular os retornos das análises.
-
-### Estruturas de dados utilizadas
-- `PriorityQueue` para o algoritmo de Dijkstra;
-- `ArrayDeque` (como implementação principal de `Queue`) para o BFS;
-- `LinkedHashSet`, `HashSet` e `HashMap` para otimização das buscas, controle de vértices visitados e reconstrução de caminhos.
+The React and TypeScript frontend communicates with the Java backend through REST API endpoints to retrieve network data and display analysis results.
 
 ---
 
-## 📁 Estrutura do Projeto
+## 🏗️ System Architecture
+
+The application is organized into a Java backend and a React frontend.
+
+### Backend — Java
+
+The backend contains the graph data structures, algorithms, network-analysis logic, and API endpoints.
+
+**Core components:**
+
+- `Graph` — Represents the student network.
+- `Vertex` — Represents a student in the graph.
+- `Edge` — Represents a connection between students.
+- `GraphAlgorithm` — Common abstraction for graph algorithms.
+- `BFS` — Implements breadth-first traversal.
+- `DFS` — Implements depth-first traversal.
+- `Dijkstra` — Calculates minimum-cost paths in a weighted graph.
+- `PathResult` — Encapsulates path-analysis results.
+- `LinkedInAnalyzer` — Provides network-analysis operations.
+- `ConnectionSuggestion` — Handles connection recommendation logic.
+- `LinkedInApp` — Demonstrates the graph-analysis functionality.
+- `StudentNetworkServer` — Exposes network functionality through HTTP API endpoints.
+
+### Frontend — React and TypeScript
+
+The frontend provides an interface for interacting with the network-analysis functionality and viewing results returned by the backend.
+
+### API Endpoints
+
+The Java backend exposes the following endpoints:
+
+| Endpoint | Purpose |
+|---|---|
+| `/api/network` | Retrieves network data |
+| `/api/groups` | Retrieves connected-group information |
+| `/api/path` | Performs path analysis |
+| `/api/route` | Calculates a weighted route |
+| `/api/recommendations` | Retrieves connection recommendations |
+| `/api/traversal` | Runs graph traversal |
+
+The API runs locally on port `8080` in the development configuration.
+
+---
+
+## 📁 Project Structure
 
 ```text
-src
-├── graph
-│   ├── Graph.java
-│   ├── Vertex.java
-│   └── Edge.java
+Student-Network-Graph-Analyzer/
+├── src/
+│   └── main/
+│       └── java/
+│           └── br/com/unipe/linkedingraph/
+│               ├── graph/
+│               ├── algorithm/
+│               ├── analyzer/
+│               ├── LinkedInApp.java
+│               └── StudentNetworkServer.java
 │
-├── algorithm
-│   ├── GraphAlgorithm.java
-│   ├── DFS.java
-│   ├── BFS.java
-│   ├── Dijkstra.java
-│   └── PathResult.java
+├── frontend/
+│   ├── src/
+│   ├── package.json
+│   └── ...
 │
-├── analyzer
-│   ├── LinkedInAnalyzer.java
-│   └── ConnectionSuggestion.java
-│
-└── LinkedInApp.java
+├── gradle/
+│   └── wrapper/
+├── build.gradle.kts
+├── settings.gradle.kts
+├── gradlew
+├── gradlew.bat
+├── .gitignore
+└── README.md
 ```
+
+*Note: The structure above is a logical overview. Adjust the nested paths to match the exact locations of your source files.*
 
 ---
 
-## ⚙️ Como Executar
+## ⚙️ Getting Started
 
-O projeto já possui um cenário de demonstração configurado para validar todas as funcionalidades implementadas.
+### Prerequisites
 
-1. Clone o repositório:
+- Java Development Kit (JDK) 21 or compatible version
+- Node.js and npm
+- Git
+
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/GuilhermeParnaibaNunes/LinkedInAnalyzer
+git clone https://github.com/YOUR_USERNAME/Student-Network-Graph-Analyzer.git
+cd Student-Network-Graph-Analyzer
 ```
 
-2. Abra o projeto em sua IDE de preferência (IntelliJ IDEA, Eclipse, VS Code etc.).
+Replace `YOUR_USERNAME` with your GitHub username.
 
-3. Execute a classe principal:
+### 2. Build the Java backend
+
+```bash
+chmod +x gradlew
+./gradlew build
+```
+
+On Windows, use:
+
+```bat
+gradlew.bat build
+```
+
+### 3. Start the Java API server
+
+If `StudentNetworkServer` is the configured server entry point, run:
+
+```bash
+java -cp build/classes/java/main br.com.unipe.linkedingraph.StudentNetworkServer
+```
+
+The API should be available at:
 
 ```text
-br.com.unipe.linkedingraph.LinkedInApp
+http://localhost:8080/api
 ```
 
-4. Acompanhe os resultados das análises sendo exibidos no console.
+Keep the backend terminal running while using the frontend.
+
+### 4. Start the frontend
+
+Open a second terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open the local URL printed by the frontend development server.
+
+*The commands assume the frontend uses npm and a development script configured in `package.json`.*
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🛠️ Technologies Used
 
-- Java 21+
-- Gradle
-- Git
-- GitHub
-- IntelliJ IDEA
-
----
-
-## 👥 Equipe
-
-- **Guilherme Parnaíba Nunes** — RGM 38887479
-- **Ikharo Cardoso Queiroz da Silva** — RGM 38421313
-- **Sebastião Ricardo Felix Dos Santos Silva** — RGM 38966875
-- **Vinicius Emanuel de Souza Nascimento** — RGM 38339188
+| Technology | Purpose |
+|---|---|
+| Java 21 | Backend logic and graph algorithms |
+| Gradle | Build automation |
+| Java HTTP Server | REST API |
+| React | Frontend interface |
+| TypeScript | Frontend development |
+| HTML and CSS | Interface structure and styling |
+| Git and GitHub | Version control and project hosting |
 
 ---
 
-## 🙏 Agradecimentos
+## 🎯 Learning Outcomes
 
-A estrutura base do grafo utilizada neste projeto foi adaptada do material didático disponibilizado pelo professor **Douglas Meneses** durante a disciplina de **Teoria dos Grafos**, servindo como ponto de partida para o desenvolvimento desta aplicação. Agradecemos pelas aulas e pelos ensinamentos transmitidos tanto nos termos da disciplina quanto fora dela.
+This project demonstrates practical application of:
+
+- Graph representation using vertices and edges
+- Breadth-First Search and Depth-First Search
+- Connected-component analysis
+- Shortest-path algorithms and weighted graphs
+- Java object-oriented programming
+- REST API development and frontend-backend communication
+- Modular software design and build automation
 
 ---
 
-## 📄 Licença
+## 🔮 Future Improvements
 
-Este projeto possui finalidade exclusivamente **acadêmica** e foi desenvolvido para a disciplina de **Teoria dos Grafos** do curso de Ciência da Computação do **Unipê**. Distribuído sob a licença MIT.
+- Add interactive graph visualization.
+- Support dynamic creation and editing of student profiles and connections.
+- Add persistent database storage.
+- Improve recommendation ranking with explainable graph-based metrics.
+- Add automated unit and integration tests.
+- Evaluate algorithm performance on larger networks.
+- Improve API validation and error handling.
+
+---
+
+## 👨‍💻 Author
+
+**Atharva Awasthy**
+
+B.Tech — Computer Science and Engineering  
+Manipal University Jaipur
+
+---
+
+## 📄 License
+
+See the `LICENSE` file in this repository for the applicable license terms.
